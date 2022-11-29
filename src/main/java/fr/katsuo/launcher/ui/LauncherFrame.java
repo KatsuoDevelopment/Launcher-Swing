@@ -1,6 +1,8 @@
-package fr.katsuo.launcher;
+package fr.katsuo.launcher.ui;
 
+import fr.katsuo.launcher.Constants;
 import fr.katsuo.launcher.utils.MouseUtils;
+import fr.katsuo.launcher.utils.logger.ELogger;
 import fr.katsuo.launcher.utils.logger.Logger;
 
 import javax.swing.*;
@@ -8,10 +10,10 @@ import java.awt.*;
 
 public class LauncherFrame extends JFrame {
     private static LauncherFrame instance;
-    private LauncherPanel panel;
-    private Logger logger = new Logger(Constants.name);
+    private final LauncherPanel panel;
+    private final Logger logger = new Logger(Constants.name);
 
-    public LauncherFrame(){
+    public LauncherFrame() {
         this.setTitle("Launcher de test");
 
         this.setUndecorated(true);
@@ -30,9 +32,14 @@ public class LauncherFrame extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        instance = new LauncherFrame();
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            instance = new LauncherFrame();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
+            getInstance().logger.log(ELogger.ERROR, e.getMessage());
+        }
     }
 
     public static LauncherFrame getInstance() {

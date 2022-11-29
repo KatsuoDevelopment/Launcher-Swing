@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 public class MouseUtils extends MouseAdapter {
 
     private Point click;
-    private JFrame frame;
+    private final JFrame frame;
 
     public MouseUtils(JFrame frame) {
         this.frame = frame;

@@ -1,4 +1,4 @@
-package fr.katsuo.launcher.utils.logger;
+package fr.katsuo.launcher.utils.logger.util;
 
 public class Color {
 

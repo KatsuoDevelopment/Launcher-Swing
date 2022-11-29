@@ -1,6 +1,7 @@
 package fr.katsuo.launcher.launch;
 
 import fr.katsuo.launcher.Constants;
+import fr.katsuo.launcher.ram.Ram;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,7 @@ public class Arguments {
     private final String username;
     private final String uuid;
     private final String accessToken;
+    private Ram ram = new Ram();
 
     public Arguments(String username, String uuid, String accessToken) {
         this.username = username;
@@ -23,6 +25,7 @@ public class Arguments {
     public List<String> getVMArguments() {
         List<String> argsVM = new ArrayList<String>();
         argsVM.add("-Djava.library.path=" + Constants.nativePath);
+        argsVM.add("-Xmx" + this.ram.getRam());
         argsVM.add("-cp");
         argsVM.add(getClasspath());
         argsVM.add("net.minecraft.client.main.Main");

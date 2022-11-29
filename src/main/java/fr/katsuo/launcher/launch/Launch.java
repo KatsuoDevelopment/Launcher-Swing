@@ -1,7 +1,7 @@
 package fr.katsuo.launcher.launch;
 
-import fr.katsuo.launcher.LauncherFrame;
 import fr.katsuo.launcher.Constants;
+import fr.katsuo.launcher.ui.LauncherFrame;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,7 @@ public class Launch {
 
     private final List<String> vmargs;
     private final List<String> args;
+
 
     public Launch(List<String> vmargs, List<String> args) {
         this.vmargs = vmargs;
@@ -24,7 +25,7 @@ public class Launch {
         ProcessBuilder pb = new ProcessBuilder();
         ArrayList<String> oneCommand = new ArrayList<String>();
 
-        oneCommand.add("java");
+        oneCommand.add("java ");
         oneCommand.addAll(vmargs);
         oneCommand.addAll(args);
 

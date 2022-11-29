@@ -1,13 +1,14 @@
-package fr.katsuo.launcher;
+package fr.katsuo.launcher.ui;
 
 
+import fr.katsuo.launcher.Constants;
 import fr.katsuo.launcher.auth.Authenticate;
 import fr.katsuo.launcher.launch.Arguments;
 import fr.katsuo.launcher.launch.Launch;
+import fr.katsuo.launcher.ram.ui.RamFrame;
+import fr.katsuo.launcher.secret.Token;
 import fr.katsuo.launcher.utils.Update;
-import fr.katsuo.launcher.utils.logger.Color;
 import fr.katsuo.launcher.utils.logger.ELogger;
-import fr.katsuo.launcher.utils.logger.Logger;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticationException;
 
 import javax.imageio.ImageIO;
@@ -20,15 +21,13 @@ import java.io.IOException;
 
 public class LauncherPanel extends JPanel implements ActionListener {
 
-    private BufferedImage background;
     private final JTextField usernameField = new JTextField(Token.TOKEN_MAIL);
     private final JPasswordField passwordField = new JPasswordField(Token.TOKEN_PASS);
-
     private final JButton play = new JButton("Jouer");
     private final JButton close = new JButton("X");
     private final JButton settings = new JButton("Ram");
-
     private final Authenticate authenticate = new Authenticate();
+    private BufferedImage background;
 
     public LauncherPanel() {
         this.setLayout(null);
@@ -76,7 +75,7 @@ public class LauncherPanel extends JPanel implements ActionListener {
                     try {
                         authenticate.authenticateMicrosoft(usernameField.getText(), passwordField.getText());
                     } catch (MicrosoftAuthenticationException e) {
-                        JOptionPane.showMessageDialog(LauncherPanel.this, "Erreur : "  + e.getMessage(), Constants.name + " | Erreur", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(LauncherPanel.this, "Erreur : " + e.getMessage(), Constants.name + " | Erreur", JOptionPane.ERROR_MESSAGE);
                         LauncherFrame.getInstance().getLogger().log(ELogger.ERROR, e.getMessage());
                         setFieldsEnabled(true);
                         return;
@@ -104,13 +103,13 @@ public class LauncherPanel extends JPanel implements ActionListener {
         } else if (close.equals(e.getSource())) {
             System.exit(0);
         } else if (settings.equals(e.getSource())) {
-            Thread t = new Thread(){
+            Thread ram = new Thread() {
                 @Override
                 public void run() {
-
+                    RamFrame frame = new RamFrame();
                 }
             };
-            t.start();
+            ram.start();
         }
     }
 

@@ -1,25 +1,25 @@
 package fr.katsuo.launcher.utils.logger;
 
-import fr.katsuo.launcher.Constants;
+import fr.katsuo.launcher.utils.logger.util.Color;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Logger implements ILogger{
+public class Logger implements ILogger {
 
-    private Date date = new Date();
-    private String format = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(date);
-    private String loggerName;
+    private final Date date = new Date();
+    private final String format = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(date);
+    private final String loggerName;
 
 
-    public Logger(String loggerName){
+    public Logger(String loggerName) {
         this.loggerName = loggerName;
     }
 
     @Override
     public void log(ELogger logger, String text) {
-        switch (logger){
+        switch (logger) {
             case INFO:
             case DEBUG:
                 System.out.printf("[" + format + "] " + "[" + loggerName + "] " + "[" + logger.name() + "]: " + text + this.returnLine());
@@ -36,7 +36,7 @@ public class Logger implements ILogger{
         }
     }
 
-    public String returnLine(){
+    public String returnLine() {
         return Color.RESET + "\n";
     }
 }

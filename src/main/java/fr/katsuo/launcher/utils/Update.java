@@ -10,7 +10,7 @@ public class Update {
 
     public static void update() throws Exception {
         VanillaVersion vanillaVersion = new VanillaVersion.VanillaVersionBuilder()
-                .withName("1.8.8")
+                .withName("1.6.4")
                 .build();
         FlowUpdater flowUpdater = new FlowUpdater.FlowUpdaterBuilder()
                 .withVanillaVersion(vanillaVersion)
