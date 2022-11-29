@@ -14,7 +14,7 @@ public class Arguments {
     private final String username;
     private final String uuid;
     private final String accessToken;
-    private Ram ram = new Ram();
+    private final Ram ram = new Ram();
 
     public Arguments(String username, String uuid, String accessToken) {
         this.username = username;

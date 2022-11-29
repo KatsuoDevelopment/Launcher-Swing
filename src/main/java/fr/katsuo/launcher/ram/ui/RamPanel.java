@@ -11,7 +11,7 @@ public class RamPanel extends JPanel implements ActionListener {
     private final JSlider slider = new JSlider(1, 10, 1);
     private final JButton button = new JButton("Save");
 
-    public RamPanel(){
+    public RamPanel() {
         setLayout(null);
 
         slider.setBounds(20, 20, 200, 60);

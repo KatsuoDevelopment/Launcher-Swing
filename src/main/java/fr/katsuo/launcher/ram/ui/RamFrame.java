@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class RamFrame extends JFrame {
 
-    private RamPanel panel;
+    private final RamPanel panel;
 
-    public RamFrame(){
+    public RamFrame() {
         this.setTitle("Ram Panel");
 
         this.setUndecorated(true);
