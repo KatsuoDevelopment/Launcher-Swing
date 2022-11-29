@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+compileJava.options.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://litarvan.github.io/maven'
+    }
+}
+
+dependencies {
+    implementation 'fr.litarvan:openauth:1.1.4'
+    implementation 'fr.flowarg:flowupdater:1.7.2'
+}
+
+test {
+    useJUnitPlatform()
+}
