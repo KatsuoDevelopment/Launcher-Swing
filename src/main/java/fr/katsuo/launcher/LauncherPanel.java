@@ -18,8 +18,8 @@ import java.io.IOException;
 public class LauncherPanel extends JPanel implements ActionListener {
 
     private BufferedImage background;
-    private final JTextField usernameField = new JTextField(Constants.email);
-    private final JPasswordField passwordField = new JPasswordField(Constants.password);
+    private final JTextField usernameField = new JTextField(Token.TOKEN_MAIL);
+    private final JPasswordField passwordField = new JPasswordField(Token.TOKEN_MAIL);
 
     private final JButton play = new JButton("Jouer");
     private final JButton close = new JButton("X");
