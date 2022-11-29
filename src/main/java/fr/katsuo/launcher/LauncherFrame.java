@@ -1,6 +1,7 @@
 package fr.katsuo.launcher;
 
 import fr.katsuo.launcher.utils.MouseUtils;
+import fr.katsuo.launcher.utils.logger.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 public class LauncherFrame extends JFrame {
     private static LauncherFrame instance;
     private LauncherPanel panel;
+    private Logger logger = new Logger(Constants.name);
 
     public LauncherFrame(){
         this.setTitle("Launcher de test");
@@ -39,5 +41,9 @@ public class LauncherFrame extends JFrame {
 
     public LauncherPanel getPanel() {
         return panel;
+    }
+
+    public Logger getLogger() {
+        return logger;
     }
 }

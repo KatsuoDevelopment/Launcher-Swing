@@ -5,6 +5,9 @@ import fr.katsuo.launcher.auth.Authenticate;
 import fr.katsuo.launcher.launch.Arguments;
 import fr.katsuo.launcher.launch.Launch;
 import fr.katsuo.launcher.utils.Update;
+import fr.katsuo.launcher.utils.logger.Color;
+import fr.katsuo.launcher.utils.logger.ELogger;
+import fr.katsuo.launcher.utils.logger.Logger;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticationException;
 
 import javax.imageio.ImageIO;
@@ -19,7 +22,7 @@ public class LauncherPanel extends JPanel implements ActionListener {
 
     private BufferedImage background;
     private final JTextField usernameField = new JTextField(Token.TOKEN_MAIL);
-    private final JPasswordField passwordField = new JPasswordField(Token.TOKEN_MAIL);
+    private final JPasswordField passwordField = new JPasswordField(Token.TOKEN_PASS);
 
     private final JButton play = new JButton("Jouer");
     private final JButton close = new JButton("X");
@@ -60,10 +63,11 @@ public class LauncherPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (play.equals(e.getSource())) {
             setFieldsEnabled(false);
-
             if (usernameField.getText().replaceAll(" ", "").length() == 0 || passwordField.getText().length() == 0) {
-                JOptionPane.showMessageDialog(this, "Rempli les champs", "Erreur zeubi", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Tous les champs n'ont pas été remplis", Constants.name + " | Erreur", JOptionPane.ERROR_MESSAGE);
+                LauncherFrame.getInstance().getLogger().log(ELogger.ERROR, "Tous les champs n'ont pas été remplis");
                 setFieldsEnabled(true);
+                return;
             }
 
             Thread t = new Thread() {
@@ -72,20 +76,25 @@ public class LauncherPanel extends JPanel implements ActionListener {
                     try {
                         authenticate.authenticateMicrosoft(usernameField.getText(), passwordField.getText());
                     } catch (MicrosoftAuthenticationException e) {
-                        JOptionPane.showMessageDialog(LauncherPanel.this, "Erreur de connexion", "Erreur zeubi : " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(LauncherPanel.this, "Erreur : "  + e.getMessage(), Constants.name + " | Erreur", JOptionPane.ERROR_MESSAGE);
+                        LauncherFrame.getInstance().getLogger().log(ELogger.ERROR, e.getMessage());
                         setFieldsEnabled(true);
                         return;
                     }
                     try {
                         Update.update();
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(LauncherPanel.this, "Erreur de connexion", "Erreur zeubi : " + ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+                        LauncherFrame.getInstance().getLogger().log(ELogger.INFO, "Game Successfully Updated");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(LauncherPanel.this, "Erreur : " + e.getMessage(), Constants.name + " | Erreur", JOptionPane.ERROR_MESSAGE);
+                        LauncherFrame.getInstance().getLogger().log(ELogger.ERROR, e.getMessage());
                         setFieldsEnabled(true);
+                        return;
                     }
 
                     Arguments arguments = new Arguments(authenticate.getResult().getProfile().getName(), authenticate.getResult().getProfile().getId(), authenticate.getResult().getAccessToken());
-
+                    LauncherFrame.getInstance().getLogger().log(ELogger.INFO, "Game Successfully Launch");
                     Launch launch = new Launch(arguments.getVMArguments(), arguments.getArguments());
+
 
                 }
             };

@@ -42,3 +42,10 @@ src/main/java/fr/katsuo/launcher/Token.java
 src/main/java/fr/katsuo/launcher/utils/Logger.java
 src/main/resources/background.png
 src/main/resources/button.jpg
+build/classes/java/main/fr/katsuo/launcher/Token.class
+build/classes/java/main/fr/katsuo/launcher/Constants.class
+build/classes/java/main/fr/katsuo/launcher/utils/logger/Color.class
+build/classes/java/main/fr/katsuo/launcher/utils/logger/ELogger.class
+build/classes/java/main/fr/katsuo/launcher/utils/logger/ILogger.class
+build/classes/java/main/fr/katsuo/launcher/utils/logger/Logger$1.class
+build/classes/java/main/fr/katsuo/launcher/utils/logger/Logger.class
