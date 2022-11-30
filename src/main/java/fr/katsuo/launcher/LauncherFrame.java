@@ -1,6 +1,7 @@
-package fr.katsuo.launcher.ui;
+package fr.katsuo.launcher;
 
-import fr.katsuo.launcher.Constants;
+import fr.katsuo.launcher.ui.LauncherPanel;
+import fr.katsuo.launcher.utils.Constants;
 import fr.katsuo.launcher.utils.MouseUtils;
 import fr.katsuo.launcher.utils.logger.ELogger;
 import fr.katsuo.launcher.utils.logger.Logger;

@@ -1,4 +1,4 @@
-package fr.katsuo.launcher;
+package fr.katsuo.launcher.utils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,6 +11,6 @@ public class Constants {
     public static final Path nativePath = Paths.get(gameDir + "/natives");
     public static final Path assetsPath = Paths.get(gameDir + "/assets");
     public static final Path librairiesPath = Paths.get(gameDir + "/libraries");
-    public static final Path ramFilePath = Paths.get(gameDir + "/ram.properties");
+    public static final Path optionsFilePath = Paths.get(gameDir + "/options.properties");
     public static final String assetIndex = "1.8";
 }

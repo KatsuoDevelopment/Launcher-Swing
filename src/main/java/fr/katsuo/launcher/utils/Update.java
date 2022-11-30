@@ -2,7 +2,6 @@ package fr.katsuo.launcher.utils;
 
 import fr.flowarg.flowupdater.FlowUpdater;
 import fr.flowarg.flowupdater.versions.VanillaVersion;
-import fr.katsuo.launcher.Constants;
 
 import java.nio.file.Paths;
 

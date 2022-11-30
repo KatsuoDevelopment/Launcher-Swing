@@ -1,4 +1,4 @@
-package fr.katsuo.launcher.ram.ui;
+package fr.katsuo.launcher.options.ui;
 
 import fr.katsuo.launcher.utils.MouseUtils;
 

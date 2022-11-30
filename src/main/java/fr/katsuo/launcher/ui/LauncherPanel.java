@@ -1,12 +1,14 @@
 package fr.katsuo.launcher.ui;
 
 
-import fr.katsuo.launcher.Constants;
+import fr.katsuo.launcher.LauncherFrame;
 import fr.katsuo.launcher.auth.Authenticate;
 import fr.katsuo.launcher.launch.Arguments;
 import fr.katsuo.launcher.launch.Launch;
-import fr.katsuo.launcher.ram.ui.RamFrame;
+import fr.katsuo.launcher.options.ui.RamFrame;
 import fr.katsuo.launcher.secret.Token;
+import fr.katsuo.launcher.ui.custom.CustomButton;
+import fr.katsuo.launcher.utils.Constants;
 import fr.katsuo.launcher.utils.Update;
 import fr.katsuo.launcher.utils.logger.ELogger;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticationException;
@@ -28,6 +30,8 @@ public class LauncherPanel extends JPanel implements ActionListener {
     private final JButton settings = new JButton("Ram");
     private final Authenticate authenticate = new Authenticate();
     private BufferedImage background;
+    private BufferedImage imageBtn;
+    private RamFrame frame;
 
     public LauncherPanel() {
         this.setLayout(null);
@@ -35,9 +39,13 @@ public class LauncherPanel extends JPanel implements ActionListener {
 
         try {
             background = ImageIO.read(getClass().getResource("/background.png"));
+            imageBtn = ImageIO.read(getClass().getResource("/button.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        CustomButton customButton = new CustomButton(imageBtn);
+        this.add(customButton);
 
         usernameField.setBounds(300, 350, 200, 30);
         this.add(usernameField);
@@ -106,7 +114,7 @@ public class LauncherPanel extends JPanel implements ActionListener {
             Thread ram = new Thread() {
                 @Override
                 public void run() {
-                    RamFrame frame = new RamFrame();
+                    frame = new RamFrame();
                 }
             };
             ram.start();
@@ -125,4 +133,7 @@ public class LauncherPanel extends JPanel implements ActionListener {
         play.setEnabled(enabled);
     }
 
+    public RamFrame getFrame() {
+        return frame;
+    }
 }
