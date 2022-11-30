@@ -21,7 +21,7 @@ public class LauncherFrame extends JFrame {
         this.setBackground(new Color(0, 0, 0, 0));
         this.setContentPane(panel = new LauncherPanel());
         this.pack();
-        this.setSize(800, 600);
+        this.setSize(550, 650);
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);

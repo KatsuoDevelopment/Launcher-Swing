@@ -23,52 +23,66 @@ import java.io.IOException;
 
 public class LauncherPanel extends JPanel implements ActionListener {
 
+    private Image background = new ImageIcon(getClass().getResource("/background.png")).getImage();;
+    private Image imgPlay = new ImageIcon(getClass().getResource("/play.png")).getImage();;
+    private Image imgPlayH = new ImageIcon(getClass().getResource("/play_hover.png")).getImage();;
+    private Image imgSettings = new ImageIcon(getClass().getResource("/settings.png")).getImage();;
+    private Image imgSettingsH = new ImageIcon(getClass().getResource("/settings_hover.png")).getImage();;
+    private Image imgClose = new ImageIcon(getClass().getResource("/close.png")).getImage();;
+    private Image imgCloseH = new ImageIcon(getClass().getResource("/close_hover.png")).getImage();;
+    private Image imgHide = new ImageIcon(getClass().getResource("/hide.png")).getImage();;
+    private Image imgHideH = new ImageIcon(getClass().getResource("/hide_hover.png")).getImage();;
+
     private final JTextField usernameField = new JTextField(Token.TOKEN_MAIL);
     private final JPasswordField passwordField = new JPasswordField(Token.TOKEN_PASS);
-    private final JButton play = new JButton("Jouer");
-    private final JButton close = new JButton("X");
-    private final JButton settings = new JButton("Ram");
+
+    private CustomButton playButton = new CustomButton(imgPlay, imgPlayH);
+    private CustomButton settingsButton = new CustomButton(imgSettings, imgSettingsH);
+    private CustomButton closeButton = new CustomButton(imgClose, imgCloseH);
+    private CustomButton hideButton = new CustomButton(imgHide, imgHideH);
+
     private final Authenticate authenticate = new Authenticate();
-    private BufferedImage background;
-    private BufferedImage imageBtn;
     private RamFrame frame;
 
     public LauncherPanel() {
         this.setLayout(null);
         this.setOpaque(false);
 
-        try {
-            background = ImageIO.read(getClass().getResource("/background.png"));
-            imageBtn = ImageIO.read(getClass().getResource("/button.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        CustomButton customButton = new CustomButton(imageBtn);
-        this.add(customButton);
-
-        usernameField.setBounds(300, 350, 200, 30);
+        usernameField.setBounds(60, 160, 430, 50);
+        usernameField.setForeground(Color.WHITE);
+        usernameField.setOpaque(false);
+        usernameField.setBorder(null);
         this.add(usernameField);
 
-        passwordField.setBounds(300, 400, 200, 30);
+        passwordField.setBounds(60, 290, 430, 50);
+        passwordField.setForeground(Color.WHITE);
+        passwordField.setOpaque(false);
+        passwordField.setBorder(null);
         this.add(passwordField);
 
-        play.setBounds(375, 180, 150, 30);
-        play.addActionListener(this);
-        this.add(play);
+        playButton.setBounds(15,490);
+        playButton.addActionListener(this);
+        this.add(playButton);
 
-        close.setBounds(150, 230, 40, 40);
-        close.addActionListener(this);
-        this.add(close);
+        settingsButton.setBounds(285, 490);
+        settingsButton.addActionListener(this);
+        this.add(settingsButton);
 
-        settings.setBounds(70, 230, 40, 40);
-        settings.addActionListener(this);
-        this.add(settings);
+        closeButton.setBounds(510, 16);
+        closeButton.addActionListener(this);
+        this.add(closeButton);
+
+        hideButton.setBounds(480, 11);
+        hideButton.addActionListener(this);
+        this.add(hideButton);
+
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (play.equals(e.getSource())) {
+        if (playButton.equals(e.getSource())) {
+            System.out.println("test");
             setFieldsEnabled(false);
             if (usernameField.getText().replaceAll(" ", "").length() == 0 || passwordField.getText().length() == 0) {
                 JOptionPane.showMessageDialog(this, "Tous les champs n'ont pas été remplis", Constants.name + " | Erreur", JOptionPane.ERROR_MESSAGE);
@@ -108,9 +122,11 @@ public class LauncherPanel extends JPanel implements ActionListener {
             t.start();
 
 
-        } else if (close.equals(e.getSource())) {
+        } else if (closeButton.equals(e.getSource())) {
             System.exit(0);
-        } else if (settings.equals(e.getSource())) {
+        } else if (hideButton.equals(e.getSource())){
+            LauncherFrame.getInstance().setState(JFrame.ICONIFIED);
+        }else if (settingsButton.equals(e.getSource())) {
             Thread ram = new Thread() {
                 @Override
                 public void run() {
@@ -130,7 +146,7 @@ public class LauncherPanel extends JPanel implements ActionListener {
     private void setFieldsEnabled(boolean enabled) {
         usernameField.setEnabled(enabled);
         passwordField.setEnabled(enabled);
-        play.setEnabled(enabled);
+        playButton.setEnabled(enabled);
     }
 
     public RamFrame getFrame() {

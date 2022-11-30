@@ -44,8 +44,6 @@ public class Arguments {
         args.add(this.getSize(EOptions.WITDH));
         args.add("--height");
         args.add(this.getSize(EOptions.WITDH));
-        args.add("--fullscreen");
-        args.add("false");
         args.add("--accessToken");
         args.add(this.accessToken);
         args.add("--version");
