@@ -43,7 +43,7 @@ public class Arguments {
         args.add("--width");
         args.add(this.getSize(EOptions.WITDH));
         args.add("--height");
-        args.add(this.getSize(EOptions.WITDH));
+        args.add(this.getSize(EOptions.HEIGHT));
         args.add("--accessToken");
         args.add(this.accessToken);
         args.add("--version");
